@@ -51,7 +51,7 @@ class ExtractTests(unittest.TestCase):
                 </html>
                 """
         self.assertEqual(self.extract(snippet),
-                [(3, None, "msg_title", [u"Default: test tïtle"])])
+                [(3, None, "msg_title", ["Default: test tïtle"])])
 
     def test_attributes_NoDomain(self):
         snippet = """\

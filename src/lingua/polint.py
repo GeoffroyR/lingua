@@ -27,22 +27,22 @@ def verify_po(path, show_path):
         print('%sMessage repeated %d times:' % (leader, count))
         (context, msgid) = key
         if context:
-            msgid = u'[%s] %s' % (context, msgid)
-        print(textwrap.fill(msgid, initial_indent=u' ' * 5,
-                subsequent_indent=u' ' * 8).encode('utf-8'))
+            msgid = '[%s] %s' % (context, msgid)
+        print(textwrap.fill(msgid, initial_indent=' ' * 5,
+                subsequent_indent=' ' * 8).encode('utf-8'))
         
     for (msgstr, keys) in reverse_map.items():
         if len(keys) == 1:
             continue
 
         print('%sTranslation:' % leader)
-        print(textwrap.fill(msgstr, initial_indent=u' ' * 8,
-                subsequent_indent=u' ' * 8).encode('utf-8'))
+        print(textwrap.fill(msgstr, initial_indent=' ' * 8,
+                subsequent_indent=' ' * 8).encode('utf-8'))
         print("Used for %d canonical texts:" % len(keys))
         for (idx, info) in enumerate(keys):
             (context, msgid) = info
             if context:
-                msgid = u'[%s] %s' % (context, msgid)
+                msgid = '[%s] %s' % (context, msgid)
             print(textwrap.fill(msgid, initial_indent='%-8d' % (idx + 1),
                     subsequent_indent=8 * ' ').encode('utf-8'))
 

@@ -70,7 +70,7 @@ def getVariables(text):
 
 
 def update_message(msg, sheet, row, column):
-    if msg.comment.startswith(u'Default:'):
+    if msg.comment.startswith('Default:'):
         canonical = msg.comment[9:]
     else:
         canonical = msg.msgid
@@ -112,7 +112,7 @@ def ConvertXlsPo():
     for sheet in book.sheets():
         for col in range(1, sheet.ncols):
             context = cell_string(sheet, 0, col)
-            if context != u'Translator comment' and context != options.locale:
+            if context != 'Translator comment' and context != options.locale:
                 continue
 
             for row in range(1, sheet.nrows):
@@ -120,7 +120,7 @@ def ConvertXlsPo():
                 if msg is None:
                     continue
 
-                if context == u'Translator comment':
+                if context == 'Translator comment':
                     msg.tcomment = cell_string(sheet, row, col) or u''
                 else:
                     found_locale = True
@@ -184,18 +184,18 @@ def ConvertPoXls():
     italic_style.num_format_str = 'Italic'
     italic_style.font.italic = True
     italic_style.font.bold = True
-    sheet = book.add_sheet(u'Translations')
+    sheet = book.add_sheet('Translations')
     column = 0
-    sheet.write(0, column, u'Message id')
+    sheet.write(0, column, 'Message id')
     column += 1
     if 'reference' in options.comments:
-        sheet.write(0, column, u'References')
+        sheet.write(0, column, 'References')
         column += 1
     if 'extracted' in options.comments:
-        sheet.write(0, column, u'Source comment')
+        sheet.write(0, column, 'Source comment')
         column += 1
     if 'translator' in options.comments:
-        sheet.write(0, column, u'Translator comment')
+        sheet.write(0, column, 'Translator comment')
         column += 1
     for (i, cat) in enumerate(catalogs):
         sheet.write(0, column, cat[0])
@@ -213,10 +213,10 @@ def ConvertPoXls():
             if msg is not None:
                 for (entry, lineno) in msg.occurrences:
                     if lineno:
-                        o.append(u'%s:%s' % (entry, lineno))
+                        o.append('%s:%s' % (entry, lineno))
                     else:
                         o.append(entry)
-            sheet.write(row, column, u', '.join(o))
+            sheet.write(row, column, ', '.join(o))
             column += 1
         if 'extracted' in options.comments:
             if msg is not None:

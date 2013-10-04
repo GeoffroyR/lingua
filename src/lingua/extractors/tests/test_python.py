@@ -13,9 +13,9 @@ class ExtractTests(unittest.TestCase):
     def test_syntax_error(self):
         self.assertEqual(
                 self.extract("def class xya _('foo')"),
-                [(1, None, u'foo', [])])
+                [(1, None, 'foo', [])])
 
     def test_multiline_string(self):
         self.assertEqual(
                 self.extract("_('one two '\n'three')"),
-                [(1, None, u'one two three', [])])
+                [(1, None, 'one two three', [])])

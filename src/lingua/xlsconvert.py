@@ -121,7 +121,7 @@ def ConvertXlsPo():
                     continue
 
                 if context == 'Translator comment':
-                    msg.tcomment = cell_string(sheet, row, col) or u''
+                    msg.tcomment = cell_string(sheet, row, col) or ''
                 else:
                     found_locale = True
                     update_message(msg, sheet, row, col)

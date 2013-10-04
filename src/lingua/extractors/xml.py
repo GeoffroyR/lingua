@@ -9,8 +9,8 @@ from lingua.extractors.python import PythonExtractor
 
 
 class TranslateContext(object):
-    WHITESPACE = re.compile(u"\s{2,}")
-    EXPRESSION = re.compile(u"\s*\${[^}]*}\s*")
+    WHITESPACE = re.compile("\s{2,}")
+    EXPRESSION = re.compile("\s*\${[^}]*}\s*")
 
     def __init__(self, msgid, lineno, i18n_prefix):
         self.msgid = msgid
@@ -24,21 +24,21 @@ class TranslateContext(object):
     def addNode(self, name, attributes):
         name = attributes.get('%s:name' % self.i18n_prefix)
         if name:
-            self.text.append(u'${%s}' % name)
+            self.text.append('${%s}' % name)
         else:
-            self.text.append(u'<dynamic element>')
+            self.text.append('<dynamic element>')
 
     def ignore(self):
-        text = u''.join(self.text).strip()
-        text = self.WHITESPACE.sub(u' ', text)
-        text = self.EXPRESSION.sub(u'', text)
+        text = ''.join(self.text).strip()
+        text = self.WHITESPACE.sub(' ', text)
+        text = self.EXPRESSION.sub('', text)
         return not text
 
     def message(self):
-        text = u''.join(self.text).strip()
-        text = self.WHITESPACE.sub(u' ', text)
+        text = ''.join(self.text).strip()
+        text = self.WHITESPACE.sub(' ', text)
         if self.msgid:
-            return (self.lineno, None, self.msgid, [u'Default: %s' % text])
+            return (self.lineno, None, self.msgid, ['Default: %s' % text])
         else:
             return (self.lineno, None, text, [])
 
@@ -133,14 +133,14 @@ class XmlExtractor(object):
                         continue
                     if attr not in attributes:
                         continue
-                    self.addMessage(msgid, [u'Default: %s' % attributes[attr]])
+                    self.addMessage(msgid, ['Default: %s' % attributes[attr]])
 
         for (attr, value) in attributes.items():
             if self.UNDERSCORE_CALL.search(value):
                 self.addUndercoreCalls(value)
 
     def DefaultHandler(self, data):
-        if data.startswith(u'&') and self.translatestack[-1]:
+        if data.startswith('&') and self.translatestack[-1]:
             self.translatestack[-1].addText(data)
 
     def CharacterDataHandler(self, data):

@@ -92,11 +92,11 @@ class PythonExtractor(object):
             return
         default = msg.get('default', None)
         if default:
-            comments = [u'Default: %s' % u''.join(default)]
+            comments = ['Default: %s' % ''.join(default)]
         else:
             comments = []
         self.messages.append(
-                (msg['lineno'], None, u''.join(msg['label']), comments))
+                (msg['lineno'], None, ''.join(msg['label']), comments))
 
 
 extract_python = PythonExtractor()
